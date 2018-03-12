@@ -7,7 +7,7 @@ function upload() {
     if (isset($_POST['submit'])){
       $file = $_POST['file']; //Recuperation PHP du fichier apres "SUBMIT"
       $fileName = $_POST['fileName']; //Recuperation PHP du nom du fichier apres "SUBMIT"
-      $usrId = ""; //Recupere l'ID de l'utilisateur
+      $usrId = $_SESSION['id']; //Recupere l'ID de l'utilisateur
       $error = false; // Definie un status d'erreur
       $size = filesize($file); //Recupere la taille du fichier
 
