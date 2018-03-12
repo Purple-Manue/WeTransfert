@@ -1,22 +1,16 @@
-<?php
-
-include 'Model/sqlConnect.php' ;
-
-?>
-
 <form action="Controller/UserController.php" method="post">
 
-    <fieldset id="registered">
+    <fieldset id="user">
         <input type="text" name="nom">
         <input type="text" name="pass">
-        <input type="submit" value="Se connecter">
-        <input type="submit" value="S'inscrire">
+        <input type="submit" name="connexion" value="Se connecter">
+        <input  type="submit" name="inscription" value="S'inscrire">
     </fieldset>
 
 </form>
 
 
-<form action="post" name="upload">
+<form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
 
     <fieldset id="file">
         <input type="file" name="file">
