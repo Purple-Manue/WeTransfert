@@ -1,8 +1,10 @@
 <?php
+
 include 'Model/sqlConnect.php' ;
+
 ?>
 
-<form action="post" name="connect">
+<form method="post" name="connect">
 
     <fieldset id="registered">
         <input type="text" name="nom">
@@ -14,10 +16,11 @@ include 'Model/sqlConnect.php' ;
 </form>
 
 
-<form action="post" name="upload">
+<form method="post" name="upload" action="Controller/UploadController.php">
 
     <fieldset id="file">
         <input type="file" name="file">
+        <input type="text" name="fileName">
         <input type="submit" value="Envoyer">
     </fieldset>
 
