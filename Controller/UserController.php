@@ -38,7 +38,7 @@ function addUser($bdd) {
               $result = mysqli_query($bdd, $query);
               if($result)
               {
-                  $msg = "Registered Sussecfully";
+                  $msg = "Registered Successfully";
                   echo $msg;
               }
               else
