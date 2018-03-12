@@ -1,6 +1,7 @@
 <?php
 
 require '../Model/sqlConnect.php' ;
+session_start();
 
 function save($bdd, $target_file)
 {
@@ -9,7 +10,7 @@ function save($bdd, $target_file)
     $link = md5($name.$date);
     $doc = "../docs/$link";
     $status = true;
-    $user = 1;
+    $user = $_SESSION['id'];
     $insert_file = mysqli_query($bdd,
        "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
        VALUES ('$link.jpg', '$date', '$doc', '$status', '$user')");
