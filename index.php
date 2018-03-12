@@ -1,6 +1,7 @@
 <?php
 
 include 'Model/sqlConnect.php' ;
+include 'UserController.php'
 
 ?>
 
@@ -10,7 +11,7 @@ include 'Model/sqlConnect.php' ;
         <input type="text" name="nom">
         <input type="text" name="pass">
         <input type="submit" value="Se connecter">
-        <input type="submit" value="S'inscrire">
+        <input  type="submit" value="S'inscrire">
     </fieldset>
 
 </form>
