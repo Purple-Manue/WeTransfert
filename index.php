@@ -4,7 +4,7 @@ include 'Model/sqlConnect.php' ;
 
 ?>
 
-<form action="post" name="connect">
+<form action="Controller/UserController.php" method="post">
 
     <fieldset id="registered">
         <input type="text" name="nom">
