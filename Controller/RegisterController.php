@@ -14,6 +14,7 @@ function addUser($bdd) {
               {
                   $msg = "Registered Successfully";
                   echo $msg;
+                  connection($bdd);
               }
               else
               {
