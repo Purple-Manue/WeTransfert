@@ -1,6 +1,6 @@
 <?php
 
-require '../Model/sqlConnect.php';
+require 'Model/sqlConnect.php';
 
 function list(){
     //Listing de tous les fichiers d'un USR inscrit
