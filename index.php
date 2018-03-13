@@ -16,7 +16,7 @@ else{
 
 <form action="Controller/ConnectionController.php" method="post">
     <input type="text" name="nom">
-    <input type="text" name="pass">
+    <input type="password" name="pass">
     <input type="submit" name="connexion" value="Se connecter">
 </form>
 
