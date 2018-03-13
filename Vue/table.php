@@ -13,7 +13,7 @@ echo "<table>";
     echo "<tr>";
         echo '<td>' . $resultat['file_name'] . '</td>';
         echo '<td>' . $resultat['file_date'] . '</td>';
-        echo '<td>' . $resultat['file_link'] . '</td>';
+        echo '<td><a href="' . $resultat['file_link'] . '" download="' . $resultat['file_link'] . '">lien</a></td>';
         echo '<td>' . $resultat['file_status'] . '</td>';
     echo "</tr>";
     }

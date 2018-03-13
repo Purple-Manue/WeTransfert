@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['name'])){
   echo "Vous êtes connecté. Bonjour ".$_SESSION['name'];
+  echo '<a href="Vue/table.php"><button>Historique</button></a>';
   //var_dump($_SESSION);
 }
 else{
