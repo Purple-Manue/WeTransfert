@@ -5,15 +5,20 @@ session_start();
 
 function save($bdd, $target_file)
 {
+    if (isset($_SESSION['id'])) {
+        $user = $_SESSION['id'];
+    } else {
+        $user = "3";
+    }
     $name = $_POST['fileName'];
     $date = date('Y-m-d H:i:s');
     $link = md5($name.$date);
     $doc = "../docs/$link";
     $status = true;
-    $user = $_SESSION['id'];
+
     $insert_file = mysqli_query($bdd,
        "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
-       VALUES ('$link', '$date', '$doc', '$status', '$user')");
+       VALUES ('$name', '$date', '$doc', '$status', '$user')");
    if (! $insert_file) {
        echo mysqli_error($bdd);
    } else {
@@ -29,7 +34,7 @@ if (isset($_POST) AND !empty($_POST)){
     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
     $link = save($bdd, $target_file);
     rename("$target_file", "$link");
-    echo 'Voici le lien vers votre <a href="../docs/' . "$link" . '">document</a>';
+    echo 'Voici le lien vers votre <a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">document</a>';
 
     } else {
 

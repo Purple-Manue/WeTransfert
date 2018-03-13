@@ -20,7 +20,7 @@ function connection($bdd) {
             $_SESSION['id'] = $userData['id_usr'];
             $_SESSION['name'] = $userData['usr_name'];
             echo "Bienvenue " . $userData['usr_name'] . "!";
-            header("location: ../Vue/table.php");
+            header("location: ../index.php");
         }
         else
         {
