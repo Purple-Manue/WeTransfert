@@ -4,7 +4,7 @@ require 'Model/sqlConnect.php';
 
 function list(){
     //Listing de tous les fichiers d'un USR inscrit
-    $queryListFile = SELECT * FROM files INNER JOIN users ON files.file_usr=users.id_usr /*WHERE usr_name=/*Current_usr*/;
+    $queryListFile = SELECT * FROM files INNER JOIN users ON files.file_usr=users.id_usr WHERE usr_name=$_SESSION['name'];
     $query = mysqli_query($bdd, $queryListFile);
 
     if (mysqli_num_rows($query) > 0){
