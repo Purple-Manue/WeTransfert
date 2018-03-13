@@ -13,7 +13,7 @@ function save($bdd, $target_file)
     $user = $_SESSION['id'];
     $insert_file = mysqli_query($bdd,
        "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
-       VALUES ('$link.jpg', '$date', '$doc', '$status', '$user')");
+       VALUES ('$link', '$date', '$doc', '$status', '$user')");
    if (! $insert_file) {
        echo mysqli_error($bdd);
    } else {
