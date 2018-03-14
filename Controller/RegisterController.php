@@ -1,7 +1,6 @@
 <?php
 
-require '../Model/sqlConnect.php';
-$bdd = connect();
+require 'ConnectionController.php';
 
 function addUser($bdd) {
     if(isset($_POST['nom']) && isset($_POST['pass'])){

@@ -43,7 +43,7 @@ include 'includes/header.html';
         </div>
         <div class="col-12 col-md-6">
             <div class="bloc">
-                <h3>Pas envie de se créer un compte? Notre service est utilisable par tous avec certaines restrictions**</h3>
+                <h3>Pas encore de compte? Inscrivez vous pour bénéficier des nombreux avantages*</h3>
                 <form action="Controller/RegisterController.php" method="post">
                     <input class="form-control" type="text" name="nom">
                     <input class="form-control" type="password" name="pass">
@@ -58,6 +58,7 @@ include 'includes/header.html';
     <div class="row">
         <div class="bloc col-12">
             <h2>Sélectionnez le fichier à partager</h2>
+            <h3>Notre service est utilisable par tous avec certaines restrictions**</h3>
             <form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
                 <div class="row offset-1">
                     <input class="form-control col-4" type="file" name="file">
