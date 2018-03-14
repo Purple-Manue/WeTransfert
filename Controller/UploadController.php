@@ -15,18 +15,34 @@ function save($bdd, $target_file)
     $link = md5($name.$date);
     $doc = "../docs/$link";
     $status = true;
+    $size_file = $_FILES['file']['size'];
+    $fail = true;
+    echo 'USR='.$user."<br>";
 
-    $insert_file = mysqli_query($bdd,
-       "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
-       VALUES ('$name', '$date', '$doc', '$status', '$user')");
-   if (! $insert_file) {
-       echo mysqli_error($bdd);
-   } else {
-       return ($doc);
-   }
+    echo $size_file;
+
+    if($user == 3 AND $size_file > 3145728){
+      echo 'Veuillez choisir un fichier de moins de 3Mo.';
+      $fail == true;
+    }
+    elseif($user != 3 AND $size_file > 7340032){
+      echo 'Veuillez choisir un fichier de moins de 7Mo.';
+      $fail == true;
+    }
+    elseif(($user == 3 AND $size_file < 3145728) OR ($user != 3 AND $size_file < 7340032)){
+      $fail == false;
+      $insert_file = mysqli_query($bdd,
+        "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
+        VALUES ('$name', '$date', '$doc', '$status', '$user')");
+      if (! $insert_file) {
+      echo mysqli_error($bdd);
+      } else {
+      return ($doc);
+      }
+    }
 }
 
-if (isset($_POST) AND !empty($_POST)){
+if (isset($_POST) AND !empty($_POST) AND $fail === false){
 
     $bdd = connect();
     $target_dir = "../docs/";
