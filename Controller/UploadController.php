@@ -34,7 +34,7 @@ if (isset($_POST) AND !empty($_POST)){
     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
     $link = save($bdd, $target_file);
     rename("$target_file", "$link");
-    echo 'Voici le lien vers votre <a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">document</a>';
+    header("location: ../Vue/lien.php?lien=$link");
 
     } else {
 
