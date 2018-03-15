@@ -35,8 +35,8 @@ include 'includes/header.html';
             <div class="espace bloc">
                 <h3>Déjà utilisateur? Connectez vous pour bénéficier des nombreux avantages*</h3>
                 <form action="Controller/ConnectionController.php" method="post">
-                    <input class="form-control" type="text" name="nom">
-                    <input class="form-control" type="password" name="pass">
+                    <input class="form-control" type="text" name="nom" placeholder="identifiant">
+                    <input class="form-control" type="password" name="pass" placeholder="mot de passe">
                     <input class="btn btn-default" type="submit" name="connexion" value="Se connecter">
                 </form>
             </div>
@@ -45,8 +45,8 @@ include 'includes/header.html';
             <div class="espace bloc">
                 <h3>Pas encore de compte? Inscrivez vous pour bénéficier des nombreux avantages*</h3>
                 <form action="Controller/RegisterController.php" method="post">
-                    <input class="form-control" type="text" name="nom">
-                    <input class="form-control" type="password" name="pass">
+                    <input class="form-control" type="text" name="nom" placeholder="identifiant">
+                    <input class="form-control" type="password" name="pass" placeholder="mot de passe">
                     <input class="btn btn-default" type="submit" name="inscription" value="S'inscrire">
                 </form>
             </div>
@@ -75,7 +75,7 @@ include 'includes/header.html';
                     <input class="form-control col-12" type="text" name="fileName" placeholder="Nom du fichier">
                 </div>
                 <div>
-                    <input class="btn btn-primary col-12" type="submit" value="Envoyer">
+                    <input class="btn btn-primary col-6 col-md-3" type="submit" value="Envoyer">
                 </div>
             </form>
         </div>
