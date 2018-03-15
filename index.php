@@ -9,7 +9,7 @@ include 'includes/header.html';
         <?php
         session_start();
         if(isset($_SESSION['name'])){
-            echo '<div class="row">';
+            echo '<div class="row espace">';
             echo '<p class="message">Bonjour '. $_SESSION['name'] . ' ! </p>';
             echo '<form class="justify-content-center" method="post" action="Controller/CloseSessionController.php">';
                 echo '<input class="btn" type="submit" name="submit" value="Deconnection">';
@@ -32,7 +32,7 @@ include 'includes/header.html';
 <section class="container">
     <div class="row">
         <div class="col-12 col-md-6">
-            <div class="bloc">
+            <div class="espace bloc">
                 <h3>Déjà utilisateur? Connectez vous pour bénéficier des nombreux avantages*</h3>
                 <form action="Controller/ConnectionController.php" method="post">
                     <input class="form-control" type="text" name="nom">
@@ -42,7 +42,7 @@ include 'includes/header.html';
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="bloc">
+            <div class="espace bloc">
                 <h3>Pas encore de compte? Inscrivez vous pour bénéficier des nombreux avantages*</h3>
                 <form action="Controller/RegisterController.php" method="post">
                     <input class="form-control" type="text" name="nom">
@@ -56,16 +56,16 @@ include 'includes/header.html';
 
 <section class="container">
     <div class="row">
-        <div class="bloc col-12">
+        <div class="bloc espace col-12">
             <h2>Sélectionnez le fichier à partager</h2>
             <h3>Notre service est utilisable par tous avec certaines restrictions**</h3>
             <form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
-                <div class="row offset-1">
-                    <input class="form-control col-4" type="file" name="file">
-                    <input class="form-control col-6" type="text" name="fileName" placeholder="Nom du fichier">
+                <div class="row">
+                    <input class="form-control col-12" type="file" name="file">
+                    <input class="form-control col-12" type="text" name="fileName" placeholder="Nom du fichier">
                 </div>
                 <div>
-                    <input class="btn btn-primary col-2 offset-5" type="submit" value="Envoyer">
+                    <input class="btn btn-primary col-12" type="submit" value="Envoyer">
                 </div>
             </form>
         </div>

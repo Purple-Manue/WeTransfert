@@ -33,10 +33,8 @@ if (isset($_POST) AND !empty($_POST)){
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
     $link = save($bdd, $target_file);
+    $newlink = substr($link, 8);
     rename("$target_file", "$link");
-    header("location: ../Vue/lien.php?lien=$link");
+    header("location: ../Vue/lien.php?lien=$newlink");
 
-    } else {
-
-        echo 'Erreur';
-    }
+}
