@@ -7,10 +7,10 @@ session_start();
 function save($bdd, $target_file, $user)
 {
     if (isset($_SESSION['id'])) {
-        $user = $_SESSION['id'];
+        $user = $_SESSION['id']; // Récupération Id UtiliSatEuR
         header("location: ../index.php?user=$user");
     } else {
-        $user = 3;
+        $user = 3; // UtiliSatEuR "ANONYMOUS"
         header("location: ../index.php?user=$user");
     }
     $name = $_POST['fileName'];
@@ -29,20 +29,19 @@ function save($bdd, $target_file, $user)
     }
 }
 
-
 if (isset($_POST) AND !empty($_POST)){
   $bdd = connect();
-  //////Verification de l'ID USER - si Id = 3 > user "anonymous"
+  // Verification de l'ID UtiliSatEuR
   if (isset($_SESSION['id'])) {
       $user = $_SESSION['id'];
   } else {
       $user = 3;
   }
-  $failed = "";
-  $size_file = $_FILES['file']['size'];
-
+  $failed = ""; // Variable d'erreur
   //Verification taille fichier
+  $size_file = $_FILES['file']['size'];
   if(isset($_FILES) AND ($_FILES['file']['error'] == 1)){
+    echo "Votre systeme ne vous permet pas d'envoyer un fichier de cette taille...sorry.";
     //Necessite une modif de php.ini > upload_max_size
     $failed = "1";
     header("location: ../index.php?user=$user&error=$failed");
@@ -61,9 +60,11 @@ if (isset($_POST) AND !empty($_POST)){
     //Déplacement du fichier vers le stockage "docs/"
     $target_dir = "../docs/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    // Fichier renomé avec un nom temporaire
     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
     $link = save($bdd, $target_file, $user);
+    $newlink = substr($link, 8);
     rename("$target_file", "$link");
-    header("location: ../Vue/lien.php?lien=$link");
+    header("location: ../Vue/lien.php?lien=$newlink");
     }
 }
