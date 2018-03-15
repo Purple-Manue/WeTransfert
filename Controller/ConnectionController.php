@@ -3,6 +3,7 @@
 require '../Model/sqlConnect.php';
 $bdd = connect();
 
+//Authentification de l'utilisateur
 function connection($bdd) {
     $bdd = connect();
     $req = mysqli_query($bdd, "SELECT * FROM users
@@ -28,5 +29,5 @@ function connection($bdd) {
         }
     }
 }
-
+//Appel de la fonction d'authentification
 connection($bdd);
