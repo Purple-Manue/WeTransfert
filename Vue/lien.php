@@ -14,6 +14,10 @@ echo '<section class="container">' ;
     echo '<div class="bloc">';
         echo '<a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">'. "localhost/exoWetransfert/doc/$link" . '</a>';
     echo '</div>';
+    echo '<div class="row text-center">';
+      echo '<span class="col-6"><a href="../index.php"><button class="btn btn-primary">Retour Accueil</button></a></span>';
+      echo '<span class="col-6"><a href="../Vue/table.php"><button class="btn btn-primary">Historique</button></a></span>';
+    echo '</div>';
 echo '</section>';
 
 include '../includes/base_js.html';
