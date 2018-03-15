@@ -1,39 +1,92 @@
 <?php
-session_start();
-if(isset($_SESSION['name'])){
-  echo "Vous êtes connecté. Bonjour ".$_SESSION['name'];
-  echo '<a href="Vue/table.php"><button>Historique</button></a>';
-  //var_dump($_SESSION);
-}
-else{
-  echo "Vous n'êtes pas connecté.";
-}
+
+include 'includes/header.html';
 
 ?>
-<form method="post" action="Controller/CloseSessionController.php">
-  <input type="submit" name="submit" value="Deconnection">
-</form>
 
+<header>
+    <div id="user">
+        <?php
+        session_start();
+        if(isset($_SESSION['name'])){
+            echo '<div class="row">';
+            echo '<p class="message">Bonjour '. $_SESSION['name'] . ' ! </p>';
+            echo '<form class="justify-content-center" method="post" action="Controller/CloseSessionController.php">';
+                echo '<input class="btn" type="submit" name="submit" value="Deconnection">';
+            echo '</form>';
+            echo '<a href="Vue/table.php"><button class="btn">Historique</button></a>';
+            echo '</div>';
 
-<form action="Controller/ConnectionController.php" method="post">
-    <input type="text" name="nom">
-    <input type="password" name="pass">
-    <input type="submit" name="connexion" value="Se connecter">
-</form>
+        }
+        else{
+          echo "Vous n'êtes pas connecté.";
+        }
+        ?>
+    </div>
+    <div class="container">
+        <h1 class="text-center">Oui Transfert ! </h1>
+        <h4 class="text-center">Le service de partage de lien gratuit</h4>
+    </div>
+</header>
 
+<section class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="bloc">
+                <h3>Déjà utilisateur? Connectez vous pour bénéficier des nombreux avantages*</h3>
+                <form action="Controller/ConnectionController.php" method="post">
+                    <input class="form-control" type="text" name="nom">
+                    <input class="form-control" type="password" name="pass">
+                    <input class="btn btn-default" type="submit" name="connexion" value="Se connecter">
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="bloc">
+                <h3>Pas envie de se créer un compte? Notre service est utilisable par tous avec certaines restrictions**</h3>
+                <form action="Controller/RegisterController.php" method="post">
+                    <input class="form-control" type="text" name="nom">
+                    <input class="form-control" type="password" name="pass">
+                    <input class="btn btn-default" type="submit" name="inscription" value="S'inscrire">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
-<form action="Controller/RegisterController.php" method="post">
-    <input type="text" name="nom">
-    <input type="text" name="pass">
-    <input  type="submit" name="inscription" value="S'inscrire">
-</form>
+<section class="container">
+    <div class="row">
+        <div class="bloc col-12">
+            <h2>Sélectionnez le fichier à partager</h2>
+            <p><?php
+          if (isset($_GET['error']) AND (isset($_GET['user']))) {
+              if($_GET['error']== "1"){
+                echo "Votre systeme ne vous permet pas d'envoyer un fichier de cette taille...sorry.";
+              }elseif(($_GET['error']== "2") AND ($_GET['user']== 3)){
+                echo 'Veuillez choisir un fichier inférieur à 3Mo.';
+              }elseif(($_GET['error']== "3") AND ($_GET['user']!=3)){
+                echo 'Veuillez choisir un fichier inférieur à 7Mo.';
+              }
+            } ?></p>
 
-<form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
+            <form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
+                <div class="row offset-1">
+                    <input class="form-control col-4" type="file" name="file">
+                    <input class="form-control col-6" type="text" name="fileName" placeholder="Nom du fichier">
+                </div>
+                <div>
+                    <input class="btn btn-primary col-2 offset-5" type="submit" value="Envoyer">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-    <fieldset id="file">
-        <input type="file" name="file">
-        <input type="text" name="fileName" placeholder="Nom du fichier">
-        <input type="submit" value="Envoyer">
-    </fieldset>
+<footer>
+    <small class="text-center">
+        <p>* Taille maximum de fichier autorisée de 7Mo et conservation du lien pendant 24h</p>
+        <p>** Taille maximum de fichier autorisée de 3Mo et conservation du lien pendant 10 minutes</p>
+    </small>
+</footer>
 
-</form>
+<?php include 'includes/base_js.html'; ?>

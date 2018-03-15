@@ -3,56 +3,66 @@
 require '../Model/sqlConnect.php' ;
 session_start();
 
-function save($bdd, $target_file)
+function save($bdd, $target_file, $user)
 {
     if (isset($_SESSION['id'])) {
         $user = $_SESSION['id'];
+        header("location: ../index.php?user=$user");
+        return $user;
     } else {
-        $user = "3";
+        $user = 3;
+        header("location: ../index.php?user=$user");
+        return $user;
     }
     $name = $_POST['fileName'];
     $date = date('Y-m-d H:i:s');
     $link = md5($name.$date);
     $doc = "../docs/$link";
     $status = true;
-    $size_file = $_FILES['file']['size'];
-    $fail = true;
-    echo 'USR='.$user."<br>";
 
-    echo $size_file;
-
-    if($user == 3 AND $size_file > 3145728){
-      echo 'Veuillez choisir un fichier de moins de 3Mo.';
-      $fail == true;
-    }
-    elseif($user != 3 AND $size_file > 7340032){
-      echo 'Veuillez choisir un fichier de moins de 7Mo.';
-      $fail == true;
-    }
-    elseif(($user == 3 AND $size_file < 3145728) OR ($user != 3 AND $size_file < 7340032)){
-      $fail == false;
-      $insert_file = mysqli_query($bdd,
-        "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
-        VALUES ('$name', '$date', '$doc', '$status', '$user')");
-      if (! $insert_file) {
-      echo mysqli_error($bdd);
-      } else {
-      return ($doc);
-      }
+    $insert_file = mysqli_query($bdd,
+      "INSERT INTO files (file_name, file_date, file_link, file_status, file_usr)
+      VALUES ('$name', '$date', '$doc', '$status', '$user')");
+    if (! $insert_file) {
+    echo mysqli_error($bdd);
+    } else {
+    return ($doc);
     }
 }
 
-if (isset($_POST) AND !empty($_POST) AND $fail === false){
 
+  if (isset($_POST) AND !empty($_POST)){
     $bdd = connect();
+    //////Verification de l'ID USER
+    if (isset($_SESSION['id'])) {
+        $user = $_SESSION['id'];
+    } else {
+        $user = 3;
+    }
+    $failed = "";
+    $size_file = $_FILES['file']['size'];
     $target_dir = "../docs/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-    $link = save($bdd, $target_file);
-    rename("$target_file", "$link");
-    echo 'Voici le lien vers votre <a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">document</a>';
-
-    } else {
-
-        echo 'Erreur';
+    //Verification taille fichier
+    if(isset($_FILES) AND ($_FILES['file']['error'] == 1)){
+      echo "USR=" . "$user" . "<br>";
+      echo "Votre systeme ne vous permet pas d'envoyer un fichier de cette taille...sorry.";
+      //Necessite une modif de php.ini > upload_max_size
+      $failed = "1";
+      header("location: ../index.php?user=$user&error=$failed");
     }
+    elseif(isset($_FILES) AND ($user == 3) AND ($size_file > "3145728")){
+      $failed = "2";
+      header("location: ../index.php?user=$user&error=$failed");
+    }
+    elseif(isset($_FILES) AND ($user != 3) AND ($size_file > "7340032")){
+      $failed = "3";
+      header("location: ../index.php?user=$user&error=$failed");
+    }
+    else{
+      move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+      $link = save($bdd, $target_file);
+      rename("$target_file", "$link");
+      header("location: ../Vue/lien.php?lien=$link");
+      }
+  }

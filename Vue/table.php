@@ -1,7 +1,12 @@
 <?php
 
 require '../Controller/FileListController.php';
+
+include '../includes/header2.html';
+
 $list = list_fichiers($bdd, $user);
+
+echo "<h1> Vos fichiers partagés </h1>";
 echo "<table>";
     echo "<tr>";
         echo "<td>Nom du fichier</td>";
@@ -18,3 +23,5 @@ echo "<table>";
     echo "</tr>";
     }
 echo "</table>";
+
+include '../includes/base_js.html';
