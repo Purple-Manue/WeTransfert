@@ -58,7 +58,17 @@ include 'includes/header.html';
     <div class="row">
         <div class="bloc espace col-12">
             <h2>Sélectionnez le fichier à partager</h2>
-            <h3>Notre service est utilisable par tous avec certaines restrictions**</h3>
+            <p><?php
+          if (isset($_GET['error']) AND (isset($_GET['user']))) {
+              if($_GET['error']== "1"){
+                echo "Votre systeme ne vous permet pas d'envoyer un fichier de cette taille...sorry.";
+              }elseif(($_GET['error']== "2") AND ($_GET['user']== 3)){
+                echo 'Veuillez choisir un fichier inférieur à 3Mo.';
+              }elseif(($_GET['error']== "3") AND ($_GET['user']!=3)){
+                echo 'Veuillez choisir un fichier inférieur à 7Mo.';
+              }
+            } ?></p>
+
             <form action="Controller/UploadController.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input class="form-control col-12" type="file" name="file">
