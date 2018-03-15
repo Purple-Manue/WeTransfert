@@ -6,6 +6,7 @@ include '../includes/header2.html';
 
 $link = $_GET['lien'];
 
-echo 'Voici le lien vers votre <a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">document</a>';
+echo 'Voici le lien vers votre document :' ;
+echo '<a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">'. "$link" . '</a>';
 
 include '../includes/base_js.html';
