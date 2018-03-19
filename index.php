@@ -16,7 +16,6 @@ include 'includes/header.html';
             echo '</form>';
             echo '<a href="Vue/table.php"><button class="btn">Historique</button></a>';
             echo '</div>';
-
         }
         else{
           echo "Vous n'êtes pas connecté.";
@@ -28,7 +27,8 @@ include 'includes/header.html';
         <h4 class="text-center">Le service de partage de lien gratuit</h4>
     </div>
 </header>
-
+<?php
+if(!isset($_SESSION['name'])){ ?>
 <section class="container">
     <div class="row">
         <div class="col-12 col-md-6">
@@ -53,7 +53,7 @@ include 'includes/header.html';
         </div>
     </div>
 </section>
-
+<?php ;} ?>
 <section class="container">
     <div class="row">
         <div class="bloc espace col-12">

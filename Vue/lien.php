@@ -5,6 +5,7 @@ require '../Controller/UploadController.php';
 include '../includes/header2.html';
 
 $link = $_GET['lien'];
+$user = $_GET['user'];
 
 echo '<section class="container titre">' ;
     echo '<h2>Voici le lien vers votre document :</h2>';
@@ -16,7 +17,9 @@ echo '<section class="container">' ;
     echo '</div>';
     echo '<div class="row text-center">';
       echo '<span class="col-6"><a href="../index.php"><button class="btn btn-primary">Retour Accueil</button></a></span>';
-      echo '<span class="col-6"><a href="../Vue/table.php"><button class="btn btn-primary">Historique</button></a></span>';
+      if($user!= 3){
+        echo '<span class="col-6"><a href="../Vue/table.php"><button class="btn btn-primary">Historique</button></a></span>';
+      }
     echo '</div>';
 echo '</section>';
 
