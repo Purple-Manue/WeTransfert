@@ -65,6 +65,6 @@ if (isset($_POST) AND !empty($_POST)){
     $link = save($bdd, $target_file, $user);
     $newlink = substr($link, 8);
     rename("$target_file", "$link");
-    header("location: ../Vue/lien.php?lien=$newlink");
+    header("location: ../Vue/lien.php?lien=$newlink&user=$user");
     }
 }
