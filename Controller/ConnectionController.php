@@ -26,7 +26,7 @@ function connection($bdd) {
           header("location: ../index.php");
       }
       else{ // Erreur dans le Mot de Passe
-          echo 'Mot de passe incorrect!';
+          header("location: ../Vue/erreur.php");
       }
     }
 }
