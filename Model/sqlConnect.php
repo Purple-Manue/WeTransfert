@@ -1,7 +1,8 @@
 <?php
+include '../login.php';
 
 function connect(){
-    $bdd = mysqli_connect('localhost', 'root', 'admin', 'GAC-loader');
+    $bdd = mysqli_connect('localhost', getUser(), getMdp(), 'GAC-loader');
 
     if(!$bdd) {
     echo 'Erreur' ;
