@@ -12,7 +12,7 @@ $anonymousfiles = mysqli_query($bdd,
 INNER JOIN users ON files.file_usr=users.id_usr
 WHERE file_date < (NOW()-1000) AND users.id_usr = 3");
 while ($file = mysqli_fetch_assoc($anonymousfiles)) {
-    shell_exec("find /var/www/exoWetransfert/docs -exec rm " . "$file" . " {} \;");
+    shell_exec("rm /var/www/exoWetransfert/docs/" . "$file" . " \;");
 };
 $delete = mysqli_query($bdd,
 "DELETE FROM files
