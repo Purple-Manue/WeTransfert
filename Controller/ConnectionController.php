@@ -1,4 +1,6 @@
 <?php
+session_save_path('/var/lib/php/sessions');
+session_start();
 
 require '../Model/sqlConnect.php';
 $bdd = connect();
