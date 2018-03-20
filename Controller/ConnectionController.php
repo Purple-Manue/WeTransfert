@@ -27,6 +27,8 @@ function connection($bdd) {
       }
       else{ // Erreur dans le Mot de Passe
           echo 'Mot de passe incorrect!';
+          echo "XXX-".$_POST['pass']."-XXX <br>";
+          echo "XXX-".$userData['usr_pass']."-XXX <br>";
       }
     }
 }

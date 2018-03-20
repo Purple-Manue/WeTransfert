@@ -13,7 +13,7 @@ echo '</section>';
 
 echo '<section class="container">' ;
     echo '<div class="bloc">';
-        echo '<a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">'. "localhost/exoWetransfert/doc/$link" . '</a>';
+        echo '<a href="../docs/' . "$link" . '" download="../docs/' . "$link" . '">'. "localhost/exoWetransfert/docs/$link" . '</a>';
     echo '</div>';
     echo '<div class="row text-center">';
       echo '<span class="col-6"><a href="../index.php"><button class="btn btn-primary">Retour Accueil</button></a></span>';
