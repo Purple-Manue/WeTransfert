@@ -26,7 +26,6 @@ echo '<section class="container">' ;
             }
         echo "</table>";
     echo '</div>';
-    echo '<a href="../index.php"><button class="btn btn-primary">Retour Accueil</button></a>';
 echo '</section>';
 
 include '../includes/base_js.html';

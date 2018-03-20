@@ -26,9 +26,7 @@ function connection($bdd) {
           header("location: ../index.php");
       }
       else{ // Erreur dans le Mot de Passe
-          echo 'Mot de passe incorrect!';
-          echo "XXX-".$_POST['pass']."-XXX <br>";
-          echo "XXX-".$userData['usr_pass']."-XXX <br>";
+          header("location: ../Vue/erreur.php");
       }
     }
 }
